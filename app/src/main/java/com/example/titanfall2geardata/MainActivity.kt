@@ -1,0 +1,19 @@
+package com.example.titanfall2geardata
+
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+
+class MainActivity : AppCompatActivity() {
+    GearListFragment.Callbacks
+    {
+
+        override fun onCreate(savedInstanceState: Bundle?) {
+            super.onCreate(savedInstanceState)
+            setContentView(R.layout.activity_main)
+        }
+
+
+
+    }
+
+}
