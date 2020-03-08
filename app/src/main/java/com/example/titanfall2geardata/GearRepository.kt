@@ -3,6 +3,7 @@ package com.example.titanfall2geardata
 import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.room.Room
+import com.example.titanfall2geardata.GearDatabase.GearDatabase
 import java.lang.IllegalStateException
 import java.util.*
 import java.util.concurrent.Executors
@@ -46,7 +47,7 @@ class GearRepository private constructor(context: Context) {
 
         fun get(): GearRepository {
             return INSTANCE ?:
-                    throw IllegalStateException("GearRepository needs to be initialized - R")
+                throw IllegalStateException("GearRepository needs to be initialized - R")
         }
     }
 }

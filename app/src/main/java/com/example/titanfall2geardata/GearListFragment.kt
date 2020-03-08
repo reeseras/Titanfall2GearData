@@ -21,7 +21,7 @@ private const val TAG = "GearListFragment" /// for debugging
 class GearListFragment : Fragment() {
 
     interface Callbacks {
-        fun onGearSelected(crimeId: UUID)
+        fun onGearSelected(gearId: UUID)
     }
 
     private var callbacks: Callbacks? = null
@@ -44,7 +44,7 @@ class GearListFragment : Fragment() {
     ): View {
         val view = inflater.inflate(R.layout.fragment_gear_list, container, false)
 
-        gearRecyclerView = view.findViewById(R.id.gear_recyclver_view) as RecyclerView
+        gearRecyclerView = view.findViewById(R.id.gear_recycler_view) as RecyclerView
         gearRecyclerView.layoutManager = LinearLayoutManager(context)
         gearRecyclerView.adapter = adapter
         return view
@@ -73,7 +73,7 @@ class GearListFragment : Fragment() {
         gearRecyclerView.adapter = adapter
     }
 
-    // companion object here?
+    // companion object here? pg. 178
     fun newInstance(): Fragment {
         return GearListFragment()
     }
@@ -97,30 +97,26 @@ class GearListFragment : Fragment() {
             // if crime is solved was here (crime solved)
             View.VISIBLE
         }
+
+        override fun onClick(v: View) {
+            callbacks?.onGearSelected(gear.id)
+        }
     }
 
-    override fun onClick(v: View) {
-        callbacks?.onGearSelected(gear.id)
-    }
 
-    private inner class GearAdapter(var gear: List<Gear>)
+
+    private inner class GearAdapter(var gearAll: List<Gear>)
         : RecyclerView.Adapter<GearHolder>() {
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GearHolder {
             val view = layoutInflater.inflate(R.layout.list_item_gear, parent, false)
-            return CrimeHolder(view)
+            return GearHolder(view)
         }
 
-        override fun getGearCount() = gear.size
+        override fun getItemCount() = gearAll.size
 
         override fun onBindViewHolder(holder: GearHolder, position: Int) {
-            val aGear = gear[position]
+            val aGear = gearAll[position]
             holder.bind(aGear)
-        }
-    }
-
-    companion object {
-        fun newInstance(): GearListFragment {
-            return GearListFragment()
         }
     }
 }
