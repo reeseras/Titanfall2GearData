@@ -1,4 +1,4 @@
-package com.example.titanfall2geardata.GearDatabase
+package com.example.titanfall2geardata.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
@@ -7,7 +7,6 @@ import com.example.titanfall2geardata.Gear
 
 @Database(entities = [Gear::class], version = 1)
 @TypeConverters(GearTypeConverters::class)
-
 abstract class GearDatabase : RoomDatabase() {
 
     abstract fun gearDao(): GearDao // generat DAO

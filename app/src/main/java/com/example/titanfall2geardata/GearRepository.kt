@@ -3,7 +3,7 @@ package com.example.titanfall2geardata
 import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.room.Room
-import com.example.titanfall2geardata.GearDatabase.GearDatabase
+import com.example.titanfall2geardata.database.GearDatabase
 import java.lang.IllegalStateException
 import java.util.*
 import java.util.concurrent.Executors

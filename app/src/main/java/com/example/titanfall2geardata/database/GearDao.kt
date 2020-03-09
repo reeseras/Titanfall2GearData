@@ -1,4 +1,4 @@
-package com.example.titanfall2geardata.GearDatabase
+package com.example.titanfall2geardata.database
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao

@@ -5,5 +5,5 @@
         android:id="@+id/new_gear"
         android:icon="@drawable/ic_menu_add"
         android:title="@string/new_gear"
-        app:showsAsAction="ifRoom|withText"/>
+        app:showAsAction="ifRoom|withText"/>
 </menu>
