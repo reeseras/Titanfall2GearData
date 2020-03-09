@@ -18,7 +18,6 @@ class MainActivity : AppCompatActivity(),
             supportFragmentManager
                 .beginTransaction()
                 .add(R.id.fragment_container, fragment)
-                .addToBackStack(null)
                 .commit()
         }
     }
@@ -28,6 +27,7 @@ class MainActivity : AppCompatActivity(),
         supportFragmentManager
             .beginTransaction()
             .replace(R.id.fragment_container, fragment)
+            .addToBackStack(null)
             .commit()
     }
 
