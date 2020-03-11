@@ -8,4 +8,5 @@ import java.util.*
 @Entity
 data class Gear(@PrimaryKey val id: UUID = UUID.randomUUID(),
                 var name: String = "",
-                var type: String = "")
+                var type: String = "",
+                var use: Boolean = true)

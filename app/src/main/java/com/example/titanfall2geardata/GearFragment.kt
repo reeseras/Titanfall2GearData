@@ -6,6 +6,7 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CheckBox
 import android.widget.EditText
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
@@ -19,7 +20,8 @@ class GearFragment : Fragment() {
 
     private lateinit var gear: Gear
     private lateinit var nameField: EditText
-    private lateinit var typeField: EditText
+    private lateinit var typeField: EditText // not working
+    private lateinit var useCheckBox: CheckBox
 
     private val gearDetailViewModel: GearDetailViewModel by lazy {
         ViewModelProviders.of(this).get(GearDetailViewModel::class.java)
@@ -42,6 +44,7 @@ class GearFragment : Fragment() {
 
         nameField = view.findViewById(R.id.gear_name) as EditText
         typeField = view.findViewById(R.id.gear_type) as EditText
+        useCheckBox = view.findViewById(R.id.gear_use) as CheckBox
 
         // dateButton.apply was here
 
@@ -89,9 +92,42 @@ class GearFragment : Fragment() {
             }
         }
 
-        nameField.addTextChangedListener(nameWatcher)
+        // I guess this isn't how it should be done?
+        /*
+        val typeWatcher = object : TextWatcher {
 
-        // solved checkbox change here
+            override fun beforeTypeChanged(
+                sequence:CharSequence?,
+                start: Int,
+                count: Int,
+                after: Int
+            ) {
+
+            }
+
+            override fun onTextChanged(
+                sequence: CharSequence?,
+                start: Int,
+                count: Int,
+                after: Int
+            ) {
+                gear.type=sequence.toString()
+            }
+
+            override fun afterTextChanged(sequence: Editable?) {
+
+            }
+        }
+        */
+
+        nameField.addTextChangedListener(nameWatcher)
+        // typeField.addTextChangedListener(typeWatcher)
+
+        useCheckBox.apply {
+            setOnCheckedChangeListener { _, isChecked ->
+                gear.use = isChecked
+            }
+        }
     }
 
     // saving changes
@@ -103,6 +139,10 @@ class GearFragment : Fragment() {
     private fun updateUI() {
         nameField.setText(gear.name)
         typeField.setText(gear.type)
+        useCheckBox.apply {
+            isChecked = gear.use
+            jumpDrawablesToCurrentState()
+        }
     }
 
     companion object {
