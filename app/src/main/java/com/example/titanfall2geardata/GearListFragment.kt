@@ -1,6 +1,7 @@
 package com.example.titanfall2geardata
 
 import android.content.Context
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.*
@@ -103,8 +104,9 @@ class GearListFragment : Fragment() {
 
         private lateinit var gear: Gear
 
-        private val nameTextView: TextView = itemView.findViewById(R.id.gear_name);
-        private val typeTextView: TextView = itemView.findViewById(R.id.gear_type);
+        private val nameTextView: TextView = itemView.findViewById(R.id.gear_name)
+        private val typeTextView: TextView = itemView.findViewById(R.id.gear_type)
+        private val unusedImageView: ImageView = itemView.findViewById(R.id.unused_image)
 
         init {
             itemView.setOnClickListener(this)
@@ -114,8 +116,15 @@ class GearListFragment : Fragment() {
             this.gear = gear
             nameTextView.text = this.gear.name
             typeTextView.text = this.gear.type
-            // if crime is solved was here (crime solved)
-            View.VISIBLE
+            if (!gear.use) {
+                nameTextView.setTextColor(Color.RED)
+                typeTextView.setTextColor(Color.RED)
+                unusedImageView.visibility = View.VISIBLE
+            } else {
+                nameTextView.setTextColor(Color.BLACK)
+                typeTextView.setTextColor(Color.BLACK)
+                unusedImageView.visibility = View.GONE
+            }
         }
 
         override fun onClick(v: View) {

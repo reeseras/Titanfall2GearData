@@ -92,11 +92,9 @@ class GearFragment : Fragment() {
             }
         }
 
-        // I guess this isn't how it should be done?
-        /*
         val typeWatcher = object : TextWatcher {
 
-            override fun beforeTypeChanged(
+            override fun beforeTextChanged(
                 sequence:CharSequence?,
                 start: Int,
                 count: Int,
@@ -118,10 +116,10 @@ class GearFragment : Fragment() {
 
             }
         }
-        */
+
 
         nameField.addTextChangedListener(nameWatcher)
-        // typeField.addTextChangedListener(typeWatcher)
+        typeField.addTextChangedListener(typeWatcher)
 
         useCheckBox.apply {
             setOnCheckedChangeListener { _, isChecked ->
